@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package Candidate;
+package sample.Candidate;
 
 /**
  *
@@ -17,7 +17,7 @@ public class Experience_candidate extends Candidate {
     public Experience_candidate() {
     }
 
-    public Experience_candidate(int Id, String FirstName, String LastName, int BirthDate, String Address, int Phone, String Email, int Candidate_type,int ExpInYear, String ProSkill) {
+    public Experience_candidate(String FirstName, String LastName, int BirthDate, String Address, String Phone, String Email, int Candidate_type,int ExpInYear, String ProSkill) {
         super(FirstName, LastName, BirthDate, Address, Phone, Email, Candidate_type);
         this.ExpInYear = ExpInYear;
         this.ProSkill = ProSkill;

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package Candidate;
+package sample.Candidate;
 
 /**
  *
@@ -14,16 +14,16 @@ public class Candidate {
 private int id;
 private String FirstName;
 private String LastName;
-private int BirthDate;
+private int BirthDate;  //  Year only
 private String Address;
-private int Phone;
+private String Phone;
 private String Email;
 private int Candidate_type;
 
     public Candidate() {
     }
 
-    public Candidate(String FirstName, String LastName, int BirthDate, String Address, int Phone, String Email, int Candidate_type) {
+    public Candidate(String FirstName, String LastName, int BirthDate, String Address, String Phone, String Email, int Candidate_type) {
         this.FirstName = FirstName;
         this.LastName = LastName;
         this.BirthDate = BirthDate;
@@ -93,14 +93,14 @@ private int Candidate_type;
     /**
      * @return the Phone
      */
-    public int getPhone() {
+    public String getPhone() {
         return Phone;
     }
 
     /**
      * @param Phone the Phone to set
      */
-    public void setPhone(int Phone) {
+    public void setPhone(String Phone) {
         this.Phone = Phone;
     }
 

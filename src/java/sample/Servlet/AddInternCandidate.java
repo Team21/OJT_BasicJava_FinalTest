@@ -5,8 +5,8 @@
  */
 package sample.Servlet;
 
-import Candidate.Intern_candidate;
-import Candidate.Intern_candidateDAO;
+import sample.Candidate.Intern_candidate;
+import sample.Candidate.Intern_candidateDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -42,7 +42,7 @@ public class AddInternCandidate extends HttpServlet {
             String lastName = request.getParameter("txtLastName");
             int birthDate = Integer.parseInt(request.getParameter("txtBirthDate"));
             String address = request.getParameter("txtAddress");
-            int phone = Integer.parseInt(request.getParameter("txtPhone"));
+            String phone = request.getParameter("txtPhone");
             String email = request.getParameter("txtEmail");
             String majors = request.getParameter("txtMajors");
             String semester = request.getParameter("txtSemester");

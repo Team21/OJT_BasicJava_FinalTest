@@ -42,7 +42,7 @@
     </servlet>
     <servlet>
         <servlet-name>addFresherCandidate</servlet-name>
-        <servlet-class>sample.Servlet.addFresherCandidate</servlet-class>
+        <servlet-class>sample.Servlet.AddFresherCandidate</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>addExperienceCandidate</servlet-name>

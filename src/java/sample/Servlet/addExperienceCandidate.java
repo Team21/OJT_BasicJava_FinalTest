@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package sample.Servlet;
 
+import sample.Candidate.Intern_candidate;
+import sample.Candidate.Intern_candidateDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -17,7 +18,10 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author thienlh
  */
-public class addExperienceCandidate extends HttpServlet {
+public class AddExperienceCandidate extends HttpServlet {
+
+    private final String invalidPage = "invalid.html";
+    private final String succeedPage = "succeed.html";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,16 +37,31 @@ public class addExperienceCandidate extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet addExperienceCandidate</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet addExperienceCandidate at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            //  Get parameters
+            String firstName = request.getParameter("txtFirstName");
+            String lastName = request.getParameter("txtLastName");
+            int birthDate = Integer.parseInt(request.getParameter("txtBirthDate"));
+            String address = request.getParameter("txtAddress");
+            String phone = request.getParameter("txtPhone");
+            String email = request.getParameter("txtEmail");
+            String majors = request.getParameter("txtMajors");
+            String semester = request.getParameter("txtSemester");
+            String universityName = request.getParameter("txtUniversityname");
+
+            String button = request.getParameter("btAction");
+
+            if (button.equals("Submit")) {
+                //  Create DAO and add
+                Intern_candidateDAO dao = new Intern_candidateDAO();
+                dao.add(new Intern_candidate(firstName, lastName, birthDate, address, phone, email, 2, majors, semester, universityName));
+                response.sendRedirect(succeedPage);
+            }
+        } catch (IOException e) {
+            System.out.println("Error while adding data to database!" + e.getMessage());
+            response.sendRedirect(invalidPage);
+        } catch (NumberFormatException e) {
+            System.out.println("Error while parsing number!" + e.getMessage());
+            response.sendRedirect(invalidPage);
         } finally {
             out.close();
         }

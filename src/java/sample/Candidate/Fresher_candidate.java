@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package Candidate;
+package sample.Candidate;
 
 /**
  *
@@ -18,7 +18,7 @@ private String Education;
     public Fresher_candidate() {
     }
 
-    public Fresher_candidate(int Id, String FirstName, String LastName, int BirthDate, String Address, int Phone, String Email, int Candidate_type,String Graduation_date, String Graduation_rank, String Education) {
+    public Fresher_candidate(String FirstName, String LastName, int BirthDate, String Address, String Phone, String Email, int Candidate_type,String Graduation_date, String Graduation_rank, String Education) {
         super(FirstName, LastName, BirthDate, Address, Phone, Email, Candidate_type);
         this.Graduation_date = Graduation_date;
         this.Graduation_rank = Graduation_rank;

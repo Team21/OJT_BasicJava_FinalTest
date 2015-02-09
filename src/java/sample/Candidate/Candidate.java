@@ -8,7 +8,7 @@ package sample.Candidate;
 
 /**
  *
- * @author Tuan
+ * @author thienlh
  */
 public class Candidate {
 private int id;
@@ -21,6 +21,13 @@ private String Email;
 private int Candidate_type;
 
     public Candidate() {
+    }
+
+    public Candidate(int id, String FirstName, String LastName, int Candidate_type) {
+        this.id = id;
+        this.FirstName = FirstName;
+        this.LastName = LastName;
+        this.Candidate_type = Candidate_type;
     }
 
     public Candidate(String FirstName, String LastName, int BirthDate, String Address, String Phone, String Email, int Candidate_type) {
@@ -145,4 +152,10 @@ private int Candidate_type;
     public void setId(int id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "Candidate{" + "id=" + id + ", FirstName=" + FirstName + ", LastName=" + LastName + ", BirthDate=" + BirthDate + ", Address=" + Address + ", Phone=" + Phone + ", Email=" + Email + ", Candidate_type=" + Candidate_type + '}';
+    }
+    
 }

@@ -7,22 +7,21 @@ package sample.Servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import sample.Recruitment.RecruitmentDAO;
 
 /**
  *
- * @author thienle
+ * @author thienlh
  */
-public class CenterServlet extends HttpServlet {
-    private final String internCandidateInput = "internCandidateInput.html";
-    private final String fresherCandidateInput = "fresherCandidateInput.html";
-    private final String experienceCandidateInput = "experienceCandidateInput.html";
-    private final String recruitmentServlet = "RecruitmentServlet";
-   
+public class RecruitmentServlet extends HttpServlet {
+
+    private final String invalidPage = "invalid.html";
+    private final String succeedPage = "succeed.html";
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -35,32 +34,27 @@ public class CenterServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        try {
+        try (PrintWriter out = response.getWriter()) {
             //  Get parameters
-            String button = request.getParameter("btAction");
-            String candidateType = request.getParameter("ddlCandidateType");
-            
-            if (button.equals("Select")) {
-                if (candidateType.equals("Experience Candidate")) {
-                    response.sendRedirect(experienceCandidateInput);
-                } else if (candidateType.equals("Fresher Candidate"))    {
-                    response.sendRedirect(fresherCandidateInput);
-                } else if (candidateType.equals("Intern Candidate"))    {
-                    response.sendRedirect(internCandidateInput);
-                }
+            String recruitmentPackage = request.getParameter("rbRecruitment");
+            String candidate_type = request.getParameter("rbCandidate");
+
+            RecruitmentDAO dao = new RecruitmentDAO();
+            boolean isValid = dao.isValid(recruitmentPackage, candidate_type);
+
+            if (isValid) {
+                //  Redirect to succeed.html
+                response.sendRedirect(succeedPage);
+                //  Increate participant
+                
+            } else {
+                //  Redirect to invalid.html
+                response.sendRedirect(invalidPage);
             }
-            
-            if (button.equals("Recruit")) {
-                RequestDispatcher rd = request.getRequestDispatcher(recruitmentServlet);
-                rd.forward(request, response);
-            }
-        } finally {
-            out.close();
         }
     }
 
-// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

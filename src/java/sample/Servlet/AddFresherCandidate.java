@@ -11,8 +11,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import sample.Candidate.Experience_candidate;
-import sample.Candidate.Experience_candidateDAO;
 import sample.Candidate.Fresher_candidate;
 import sample.Candidate.Fresher_candidateDAO;
 

@@ -16,6 +16,10 @@
         <servlet-name>AddExperienceCandidate</servlet-name>
         <servlet-class>sample.Servlet.AddExperienceCandidate</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RecruitmentServlet</servlet-name>
+        <servlet-class>sample.Servlet.RecruitmentServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CenterServlet</servlet-name>
         <url-pattern>/CenterServlet</url-pattern>
@@ -32,12 +36,16 @@
         <servlet-name>AddExperienceCandidate</servlet-name>
         <url-pattern>/AddExperienceCandidate</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RecruitmentServlet</servlet-name>
+        <url-pattern>/RecruitmentServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>welcome.html</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

@@ -36,6 +36,8 @@ public class AddInternCandidate extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        
+        out.println("<h1>Add new Intern Candidate</h1></br>");
         try {
             //  Get parameters
             String firstName = request.getParameter("txtFirstName");

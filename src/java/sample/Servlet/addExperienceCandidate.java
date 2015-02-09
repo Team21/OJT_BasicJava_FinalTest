@@ -13,6 +13,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import sample.Candidate.Experience_candidate;
+import sample.Candidate.Experience_candidateDAO;
 
 /**
  *
@@ -22,6 +24,7 @@ public class AddExperienceCandidate extends HttpServlet {
 
     private final String invalidPage = "invalid.html";
     private final String succeedPage = "succeed.html";
+    private final int candidateType = 0;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,6 +39,8 @@ public class AddExperienceCandidate extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        
+        out.println("<h1>Add new Exprience Candidate</h1></br>");
         try {
             //  Get parameters
             String firstName = request.getParameter("txtFirstName");
@@ -44,16 +49,15 @@ public class AddExperienceCandidate extends HttpServlet {
             String address = request.getParameter("txtAddress");
             String phone = request.getParameter("txtPhone");
             String email = request.getParameter("txtEmail");
-            String majors = request.getParameter("txtMajors");
-            String semester = request.getParameter("txtSemester");
-            String universityName = request.getParameter("txtUniversityname");
+            int expInYear = Integer.parseInt(request.getParameter("txtExpInYear"));
+            String proSkill = request.getParameter("txtProSkill");
 
             String button = request.getParameter("btAction");
 
             if (button.equals("Submit")) {
                 //  Create DAO and add
-                Intern_candidateDAO dao = new Intern_candidateDAO();
-                dao.add(new Intern_candidate(firstName, lastName, birthDate, address, phone, email, 2, majors, semester, universityName));
+                Experience_candidateDAO dao = new Experience_candidateDAO();
+                dao.add(new Experience_candidate(firstName, lastName, birthDate, address, phone, email, candidateType, expInYear, proSkill));
                 response.sendRedirect(succeedPage);
             }
         } catch (IOException e) {

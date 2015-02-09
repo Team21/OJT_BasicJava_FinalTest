@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package sample.Servlet;
 
 import java.io.IOException;
@@ -12,12 +11,20 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import sample.Candidate.Experience_candidate;
+import sample.Candidate.Experience_candidateDAO;
+import sample.Candidate.Fresher_candidate;
+import sample.Candidate.Fresher_candidateDAO;
 
 /**
  *
  * @author thienlh
  */
 public class AddFresherCandidate extends HttpServlet {
+
+    private final String invalidPage = "invalid.html";
+    private final String succeedPage = "succeed.html";
+    private final int candidateType = 1;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,17 +39,37 @@ public class AddFresherCandidate extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+
+        out.println("<h1>Add new Fresher Candidate</h1></br>");
         try {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet addFresherCandidate</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet addFresherCandidate at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            //  Get parameters
+            String firstName = request.getParameter("txtFirstName");
+            String lastName = request.getParameter("txtLastName");
+            int birthDate = Integer.parseInt(request.getParameter("txtBirthDate"));
+            String address = request.getParameter("txtAddress");
+            String phone = request.getParameter("txtPhone");
+            String email = request.getParameter("txtEmail");
+
+            //  Fresher only
+            String graduationDate = request.getParameter("txtGraduationDate");
+            String graduationRank = request.getParameter("txtGraduationRank");
+            String education = request.getParameter("txtEducation");
+
+            String button = request.getParameter("btAction");
+
+            if (button.equals("Submit")) {
+                //  Create DAO and add
+                Fresher_candidateDAO dao = new Fresher_candidateDAO();
+                dao.add(new Fresher_candidate(firstName, lastName, birthDate, address, phone, email, candidateType, graduationDate, graduationRank, education));
+
+                response.sendRedirect(succeedPage);
+            }
+        } catch (IOException e) {
+            System.out.println("Error while adding data to database!" + e.getMessage());
+            response.sendRedirect(invalidPage);
+        } catch (NumberFormatException e) {
+            System.out.println("Error while parsing number!" + e.getMessage());
+            response.sendRedirect(invalidPage);
         } finally {
             out.close();
         }

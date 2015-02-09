@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package sample.Servlet;
 
 import Candidate.Intern_candidate;
@@ -20,6 +19,9 @@ import javax.servlet.http.HttpServletResponse;
  * @author thienlh
  */
 public class AddInternCandidate extends HttpServlet {
+
+    private final String invalidPage = "invalid.html";
+    private final String succeedPage = "succeed.html";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -45,14 +47,21 @@ public class AddInternCandidate extends HttpServlet {
             String majors = request.getParameter("txtMajors");
             String semester = request.getParameter("txtSemester");
             String universityName = request.getParameter("txtUniversityname");
-            
+
             String button = request.getParameter("btAction");
-            
+
             if (button.equals("Submit")) {
                 //  Create DAO and add
                 Intern_candidateDAO dao = new Intern_candidateDAO();
                 dao.add(new Intern_candidate(firstName, lastName, birthDate, address, phone, email, 2, majors, semester, universityName));
+                response.sendRedirect(succeedPage);
             }
+        } catch (IOException e) {
+            System.out.println("Error while adding data to database!" + e.getMessage());
+            response.sendRedirect(invalidPage);
+        } catch (NumberFormatException e) {
+            System.out.println("Error while parsing number!" + e.getMessage());
+            response.sendRedirect(invalidPage);
         } finally {
             out.close();
         }

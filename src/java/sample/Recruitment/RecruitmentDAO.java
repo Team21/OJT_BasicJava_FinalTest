@@ -127,4 +127,30 @@ public class RecruitmentDAO {
             }
         }
     }
+    
+    public Recruitment getRecruitment(String recruitmentCode) {
+        try {
+            cn = DBUtils.makeConnection();
+            PreparedStatement stm;
+            ResultSet rs;
+
+            String query = "SELECT * FROM Recruitment WHERE Recruitment_code = ?";
+            stm = cn.prepareStatement(query);
+            stm.setString(1, recruitmentCode);
+            rs = stm.executeQuery();
+
+            while (rs.next()) {
+                //  Get values
+                String code = rs.getString("Recruitment_code");
+                String position = rs.getString("Position");
+                String recruitmentPackage = rs.getString("Recruitment_package");
+                int participant = rs.getInt("Participant");
+                //  Add to list
+                return new Recruitment(recruitmentCode, position, recruitmentPackage, participant);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(RecruitmentDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 }

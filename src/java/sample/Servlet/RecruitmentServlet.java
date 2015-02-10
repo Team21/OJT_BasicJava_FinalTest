@@ -39,19 +39,17 @@ public class RecruitmentServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             //  Get parameters
-            String recruitmentPackage = request.getParameter("rbRecruitment");
             String candidate_type = request.getParameter("rbCandidate");
-            String recruitmentCode = request.getParameter("txtRecruitmentCode");
-            int recruitmentParticipant = Integer.parseInt(request.getParameter("txtParticipant"));
+            String recruitmentCode = request.getParameter("rbRecruitment");
 
             RecruitmentDAO dao = new RecruitmentDAO();
-            boolean isValid = dao.isValid(recruitmentPackage, candidate_type);
+            boolean isValid = dao.isValid(dao.getRecruitment(recruitmentCode).getRecruitmentPackage(), candidate_type);
 
             if (isValid) {
                 //  Redirect to succeed.html
                 response.sendRedirect(succeedPage);
                 //  Increate participant
-                dao.increaseParticipant(recruitmentCode, recruitmentParticipant);
+                dao.increaseParticipant(recruitmentCode, dao.getRecruitment(recruitmentCode).getParticipant());
             } else {
                 //  Redirect to invalid.html
                 response.sendRedirect(invalidPage);

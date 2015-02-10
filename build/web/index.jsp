@@ -79,14 +79,12 @@
                     <c:forEach var="recruitment" items="${requestScope.RECRUITMENTS}">
                         <tr>
                             <td>
-                                <input type="radio" name="rbRecruitment" value="${recruitment.getRecruitmentPackage()}" />
+                                <input type="radio" name="rbRecruitment" value="${recruitment.getRecruitmentCode()}" />
                             </td>
                             <td>${recruitment.getRecruitmentCode()}</td>
                             <td>${recruitment.getPosition()}</td>
                             <td>${recruitment.getRecruitmentPackage()}</td>
                             <td>${recruitment.getParticipant()}</td>
-                            <input type="hidden" name="txtRecruitmentCode" value="${recruitment.getRecruitmentCode()}">
-                            <input type="hidden" name="txtParticipant" value="${recruitment.getParticipant()}">
                         </tr>
                     </c:forEach>
                 </tbody>

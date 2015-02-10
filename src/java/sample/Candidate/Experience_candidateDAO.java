@@ -17,7 +17,7 @@ import sample.utils.DBUtils;
 
 /**
  *
- * @author Ginta
+ * @author thienlh
  */
 public class Experience_candidateDAO implements Serializable {
     private final int candidateType = 0;

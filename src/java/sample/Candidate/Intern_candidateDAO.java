@@ -17,7 +17,7 @@ import sample.utils.DBUtils;
 
 /**
  *
- * @author Ginta
+ * @author thienlh
  */
 public class Intern_candidateDAO implements Serializable {
     private final int Candidate_type = 2;   //  Type of candidate

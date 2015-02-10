@@ -10,7 +10,7 @@ package sample.Candidate;
 
 /**
  *
- * @author Tuan
+ * @author thienlh
  */
 public class Experience_candidate extends Candidate {
 

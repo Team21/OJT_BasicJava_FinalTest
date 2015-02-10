@@ -11,7 +11,7 @@ package sample.Candidate;
 
 /**
  *
- * @author Tuan
+ * @author thienlh
  */
 public class Intern_candidate extends Candidate{
 private String Majors;

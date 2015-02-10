@@ -22,10 +22,10 @@ import sample.Candidate.Experience_candidateDAO;
  * @author thienlh
  */
 public class AddExperienceCandidate extends HttpServlet {
-
+    //  Pages for redirect
     private final String invalidPage = "invalid.html";
     private final String succeedPage = "succeed.html";
-    private final int candidateType = 0;
+    private final int candidateType = 0;    //  Type of candidate
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -52,10 +52,10 @@ public class AddExperienceCandidate extends HttpServlet {
             String email = request.getParameter("txtEmail");
             int expInYear = Integer.parseInt(request.getParameter("txtExpInYear"));
             String proSkill = request.getParameter("txtProSkill");
-
+            //  Get action
             String button = request.getParameter("btAction");
-
-            if (button.equals("Submit")) {
+            //  Check action
+            if (button.equals("Submit")) {  //  Add new candidate
                 //  Create DAO and add
                 Experience_candidateDAO dao = new Experience_candidateDAO();
                 Experience_candidate ec = new Experience_candidate(firstName, lastName, birthDate, address, phone, email, candidateType, expInYear, proSkill);

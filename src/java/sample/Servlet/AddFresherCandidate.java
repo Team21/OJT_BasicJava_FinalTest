@@ -22,10 +22,10 @@ import sample.Candidate.Fresher_candidateDAO;
  * @author thienlh
  */
 public class AddFresherCandidate extends HttpServlet {
-
+    //  Pages for redirect
     private final String invalidPage = "invalid.html";
     private final String succeedPage = "succeed.html";
-    private final int candidateType = 1;
+    private final int candidateType = 1;    //  Type of candidate
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -55,10 +55,10 @@ public class AddFresherCandidate extends HttpServlet {
             String graduationDate = request.getParameter("txtGraduationDate");
             String graduationRank = request.getParameter("txtGraduationRank");
             String education = request.getParameter("txtEducation");
-
+            //  Get action
             String button = request.getParameter("btAction");
-
-            if (button.equals("Submit")) {
+            //  Check action
+            if (button.equals("Submit")) {  //  Add new fresher
                 //  Create DAO and add
                 Fresher_candidateDAO dao = new Fresher_candidateDAO();
                 Fresher_candidate fc = new Fresher_candidate(firstName, lastName, birthDate, address, phone, email, candidateType, graduationDate, graduationRank, education);

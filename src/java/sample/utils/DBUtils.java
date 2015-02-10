@@ -18,7 +18,7 @@ import java.sql.SQLException;
  * @author thienle
  */
 public class DBUtils implements Serializable {
-
+    //  Return jdbc connection
     public static Connection makeConnection() {
         try {
             //  Load driver
@@ -31,9 +31,9 @@ public class DBUtils implements Serializable {
             //  Return
             return cn;
         } catch (ClassNotFoundException ex) {
-            ex.printStackTrace();
+            System.out.println("Error finding JDBC driver class! " + ex.getMessage());
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            System.out.println("Error getting sql connection! " + ex.getMessage());
         }
         return null;
     }

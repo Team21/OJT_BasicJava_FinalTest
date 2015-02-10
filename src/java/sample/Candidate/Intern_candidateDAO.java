@@ -20,7 +20,8 @@ import sample.utils.DBUtils;
  * @author Ginta
  */
 public class Intern_candidateDAO implements Serializable {
-    private final int Candidate_type = 2;
+    private final int Candidate_type = 2;   //  Type of candidate
+    //  Add new intern candidate to database
     public void add(Intern_candidate ic) {
         Connection cn = null;
         PreparedStatement stm = null;

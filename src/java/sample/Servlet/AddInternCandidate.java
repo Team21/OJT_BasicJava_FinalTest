@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author thienlh
  */
 public class AddInternCandidate extends HttpServlet {
-
+    //  Pages for redirect
     private final String invalidPage = "invalid.html";
     private final String succeedPage = "succeed.html";
 
@@ -52,10 +52,10 @@ public class AddInternCandidate extends HttpServlet {
             String majors = request.getParameter("txtMajors");
             String semester = request.getParameter("txtSemester");
             String universityName = request.getParameter("txtUniversityname");
-
+            //  Get action
             String button = request.getParameter("btAction");
-
-            if (button.equals("Submit")) {
+            //  Check action
+            if (button.equals("Submit")) {  //  Add new intern candidate
                 //  Create DAO and add
                 Intern_candidateDAO dao = new Intern_candidateDAO();
                 Intern_candidate ic = new Intern_candidate(firstName, lastName, birthDate, address, phone, email, birthDate, majors, semester, universityName);

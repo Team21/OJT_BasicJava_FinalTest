@@ -21,7 +21,7 @@ import sample.Recruitment.RecruitmentDAO;
  * @author thienlh
  */
 public class RecruitmentServlet extends HttpServlet {
-
+    //  Pages for redirect
     private final String invalidPage = "invalid.html";
     private final String succeedPage = "succeed.html";
 

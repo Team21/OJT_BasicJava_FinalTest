@@ -21,7 +21,7 @@ import sample.utils.DBUtils;
  */
 public class Experience_candidateDAO implements Serializable {
     private final int candidateType = 0;
-    
+    //  Add new experience candidate to database
     public void add(Experience_candidate ec) {
         Connection cn = null;
         PreparedStatement stm = null;

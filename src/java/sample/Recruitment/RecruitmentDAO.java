@@ -26,7 +26,7 @@ import sample.utils.DBUtils;
 public class RecruitmentDAO {
 
     private Connection cn = null;
-
+    //  Get a list of all candidate from database
     public List<Candidate> getCandidateList() {
         try {
             List<Candidate> candidates = new ArrayList<>();
@@ -55,7 +55,7 @@ public class RecruitmentDAO {
         }
         return null;
     }
-
+    //  Get a list of all recruiment available in database
     public List<Recruitment> getRecruitmentList() {
         try {
             List<Recruitment> recruitments = new ArrayList<>();
@@ -75,7 +75,6 @@ public class RecruitmentDAO {
                 int participant = rs.getInt("Participant");
                 //  Add to list
                 Recruitment recruitment = new Recruitment(code, position, recruitmentPackage, participant);
-                System.out.println(recruitment.toString());
 
                 recruitments.add(recruitment);
             }
@@ -85,7 +84,7 @@ public class RecruitmentDAO {
         }
         return null;
     }
-
+    /*   Validation by compare type of candidate and package   */
     public boolean isValid(String recruitmentPackage, String candidateType) {
         boolean isValid = false;
         if (recruitmentPackage.equals("A") && candidateType.equals("0")) {
@@ -99,7 +98,7 @@ public class RecruitmentDAO {
         }
         return isValid;
     }
-
+    //  participant++ when a new candidate is recruited
     public void increaseParticipant(String recruitmentCode, int recruitmentParticipant) {
         Connection cn = null;
         PreparedStatement stm = null;
@@ -127,7 +126,7 @@ public class RecruitmentDAO {
             }
         }
     }
-    
+    //  Get recruitment object from database base on recruitment code
     public Recruitment getRecruitment(String recruitmentCode) {
         try {
             cn = DBUtils.makeConnection();

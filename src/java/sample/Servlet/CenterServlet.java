@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author thienle
  */
 public class CenterServlet extends HttpServlet {
+    //  Pages for redirect
     private final String internCandidateInput = "internCandidateInput.html";
     private final String fresherCandidateInput = "fresherCandidateInput.html";
     private final String experienceCandidateInput = "experienceCandidateInput.html";
@@ -40,11 +41,11 @@ public class CenterServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            //  Get parameters
+            //  Get parameters and action
             String button = request.getParameter("btAction");
             String candidateType = request.getParameter("ddlCandidateType");
-            
-            if (button.equals("Select")) {
+            //  Check action and redirect
+            if (button.equals("Select")) {  //  Add new candidate
                 if (candidateType.equals("Experience Candidate")) {
                     response.sendRedirect(experienceCandidateInput);
                 } else if (candidateType.equals("Fresher Candidate"))    {
@@ -53,7 +54,7 @@ public class CenterServlet extends HttpServlet {
                     response.sendRedirect(internCandidateInput);
                 }
             }
-            
+            //  Recruit
             if (button.equals("Recruit")) {
                 RequestDispatcher rd = request.getRequestDispatcher(recruitmentServlet);
                 rd.forward(request, response);

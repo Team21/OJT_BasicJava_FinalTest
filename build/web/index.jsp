@@ -1,7 +1,9 @@
 <%-- 
-    Document   : index
-    Created on : Oct 7, 2014, 2:32:34 AM
-    Author     : thienle
+ % Le Hung Thien
+ % ThienLH1
+ % FSOFT OJT
+ % 09.02.2015
+ % BTJB Assignment 5
 --%>
 
 <%@page import="sample.Recruitment.Recruitment"%>

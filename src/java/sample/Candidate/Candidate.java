@@ -1,24 +1,29 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/* 
+ * Le Hung Thien
+ * ThienLH1
+ * FSOFT OJT
+ * 09.02.2015
+ * Basic Java Final Test
+ **/
 
 package sample.Candidate;
+
+import java.util.Calendar;
 
 /**
  *
  * @author thienlh
  */
 public class Candidate {
-private int id;
-private String FirstName;
-private String LastName;
-private int BirthDate;  //  Year only
-private String Address;
-private String Phone;
-private String Email;
-private int Candidate_type;
+
+    private int id;
+    private String FirstName;
+    private String LastName;
+    private int BirthDate;  //  Year only
+    private String Address;
+    private String Phone;
+    private String Email;
+    private int Candidate_type;
 
     public Candidate() {
     }
@@ -40,7 +45,6 @@ private int Candidate_type;
         this.Candidate_type = Candidate_type;
     }
 
-   
     /**
      * @return the FirstName
      */
@@ -153,9 +157,35 @@ private int Candidate_type;
         this.id = id;
     }
 
+    public boolean isValid() {
+        boolean isValid = true;
+        //  Email validation
+        String form = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+        java.util.regex.Pattern p = java.util.regex.Pattern.compile(form);
+        java.util.regex.Matcher m = p.matcher(this.getEmail());
+
+        if (!m.matches()) {
+            isValid = false;
+        }
+        //  BirthDate
+        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+
+        if (this.getBirthDate() < 1900 || this.getBirthDate() >= currentYear) {
+            isValid = false;
+        }
+        //  Phone
+        long phoneValid = Long.parseLong(this.getPhone());
+        if (phoneValid<1000000) {
+            isValid = false;
+        }
+
+        return isValid;
+    }
+
     @Override
     public String toString() {
         return "Candidate{" + "id=" + id + ", FirstName=" + FirstName + ", LastName=" + LastName + ", BirthDate=" + BirthDate + ", Address=" + Address + ", Phone=" + Phone + ", Email=" + Email + ", Candidate_type=" + Candidate_type + '}';
     }
-    
+
 }

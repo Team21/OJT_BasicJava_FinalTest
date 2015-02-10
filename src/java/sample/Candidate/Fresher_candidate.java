@@ -1,8 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/* 
+ * Le Hung Thien
+ * ThienLH1
+ * FSOFT OJT
+ * 09.02.2015
+ * Basic Java Final Test
+ **/
 
 package sample.Candidate;
 
@@ -10,22 +12,22 @@ package sample.Candidate;
  *
  * @author Tuan
  */
-public class Fresher_candidate extends Candidate{
-private String Graduation_date;
-private String Graduation_rank;
-private String Education;
+public class Fresher_candidate extends Candidate {
+
+    private String Graduation_date;
+    private String Graduation_rank;
+    private String Education;
 
     public Fresher_candidate() {
     }
 
-    public Fresher_candidate(String FirstName, String LastName, int BirthDate, String Address, String Phone, String Email, int Candidate_type,String Graduation_date, String Graduation_rank, String Education) {
+    public Fresher_candidate(String FirstName, String LastName, int BirthDate, String Address, String Phone, String Email, int Candidate_type, String Graduation_date, String Graduation_rank, String Education) {
         super(FirstName, LastName, BirthDate, Address, Phone, Email, Candidate_type);
         this.Graduation_date = Graduation_date;
         this.Graduation_rank = Graduation_rank;
         this.Education = Education;
     }
 
-  
     /**
      * @return the Graduation_date
      */
@@ -68,4 +70,14 @@ private String Education;
         this.Education = Education;
     }
 
+    @Override
+    public boolean isValid() {
+        boolean isValid = super.isValid(); //To change body of generated methods, choose Tools | Templates.
+        //  Check ExpInYear
+        if (!this.getGraduation_rank().equals("Excellence") && !this.getGraduation_rank().equals("Good")
+                && !this.getGraduation_rank().equals("Fair") && !this.getGraduation_rank().equals("Poor")) {
+            isValid = false;
+        }
+        return isValid;
+    }
 }

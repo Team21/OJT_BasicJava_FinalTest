@@ -1,11 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/* 
+ * Le Hung Thien
+ * ThienLH1
+ * FSOFT OJT
+ * 09.02.2015
+ * Basic Java Final Test
+ **/
 package sample.Recruitment;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -30,20 +33,20 @@ public class RecruitmentDAO {
             cn = DBUtils.makeConnection();
             Statement stm = null;
             ResultSet rs = null;
-            
+
             String query = "SELECT * FROM Candidate";
             stm = cn.createStatement();
             rs = stm.executeQuery(query);
-            
+
             while (rs.next()) {
                 //  Get values
-                String id = rs.getString("ID");
+                int id = rs.getInt("ID");
                 String firstName = rs.getString("FirstName");
                 String lastName = rs.getString("LastName");
                 int candidateType = rs.getInt("Candidate_Type");
                 //  Add to list
-                Candidate candidate = new Candidate(candidateType, firstName, lastName, candidateType);
-                
+                Candidate candidate = new Candidate(id, firstName, lastName, candidateType);
+
                 candidates.add(candidate);
             }
             return candidates;
@@ -52,18 +55,18 @@ public class RecruitmentDAO {
         }
         return null;
     }
-    
+
     public List<Recruitment> getRecruitmentList() {
         try {
             List<Recruitment> recruitments = new ArrayList<>();
             cn = DBUtils.makeConnection();
             Statement stm = null;
             ResultSet rs = null;
-            
+
             String query = "SELECT * FROM Recruitment";
             stm = cn.createStatement();
             rs = stm.executeQuery(query);
-            
+
             while (rs.next()) {
                 //  Get values
                 String code = rs.getString("Recruitment_code");
@@ -73,7 +76,7 @@ public class RecruitmentDAO {
                 //  Add to list
                 Recruitment recruitment = new Recruitment(code, position, recruitmentPackage, participant);
                 System.out.println(recruitment.toString());
-                
+
                 recruitments.add(recruitment);
             }
             return recruitments;
@@ -82,7 +85,7 @@ public class RecruitmentDAO {
         }
         return null;
     }
-    
+
     public boolean isValid(String recruitmentPackage, String candidateType) {
         boolean isValid = false;
         if (recruitmentPackage.equals("A") && candidateType.equals("0")) {
@@ -95,5 +98,33 @@ public class RecruitmentDAO {
             isValid = true;
         }
         return isValid;
+    }
+
+    public void increaseParticipant(String recruitmentCode, int recruitmentParticipant) {
+        Connection cn = null;
+        PreparedStatement stm = null;
+        
+        try {
+            cn = DBUtils.makeConnection();
+            String sql = "UPDATE Recruitment SET Participant = ? WHERE Recruitment_code = ?";
+            stm = cn.prepareStatement(sql);
+            stm.setInt(1, recruitmentParticipant + 1);
+            stm.setString(2, recruitmentCode);
+            System.out.println("Fuck you! " + recruitmentCode + recruitmentParticipant);
+            stm.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (stm != null) {
+                    stm.close();
+                }
+                if (cn != null) {
+                    cn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

@@ -1,8 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/* 
+ * Le Hung Thien
+ * ThienLH1
+ * FSOFT OJT
+ * 09.02.2015
+ * Basic Java Final Test
+ **/
+
 package sample.Servlet;
 
 import java.io.IOException;
@@ -38,6 +41,8 @@ public class RecruitmentServlet extends HttpServlet {
             //  Get parameters
             String recruitmentPackage = request.getParameter("rbRecruitment");
             String candidate_type = request.getParameter("rbCandidate");
+            String recruitmentCode = request.getParameter("txtRecruitmentCode");
+            int recruitmentParticipant = Integer.parseInt(request.getParameter("txtParticipant"));
 
             RecruitmentDAO dao = new RecruitmentDAO();
             boolean isValid = dao.isValid(recruitmentPackage, candidate_type);
@@ -46,7 +51,7 @@ public class RecruitmentServlet extends HttpServlet {
                 //  Redirect to succeed.html
                 response.sendRedirect(succeedPage);
                 //  Increate participant
-                
+                dao.increaseParticipant(recruitmentCode, recruitmentParticipant);
             } else {
                 //  Redirect to invalid.html
                 response.sendRedirect(invalidPage);

@@ -85,6 +85,8 @@
                             <td>${recruitment.getPosition()}</td>
                             <td>${recruitment.getRecruitmentPackage()}</td>
                             <td>${recruitment.getParticipant()}</td>
+                            <input type="hidden" name="txtRecruitmentCode" value="${recruitment.getRecruitmentCode()}">
+                            <input type="hidden" name="txtParticipant" value="${recruitment.getParticipant()}">
                         </tr>
                     </c:forEach>
                 </tbody>

@@ -1,8 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/* 
+ * Le Hung Thien
+ * ThienLH1
+ * FSOFT OJT
+ * 09.02.2015
+ * Basic Java Final Test
+ **/
+
 package sample.Candidate;
 
 import java.io.Serializable;
@@ -18,6 +21,7 @@ import sample.utils.DBUtils;
  */
 public class Experience_candidateDAO implements Serializable {
     private final int candidateType = 0;
+    
     public void add(Experience_candidate ec) {
         Connection cn = null;
         PreparedStatement stm = null;

@@ -1,12 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/* 
+ * Le Hung Thien
+ * ThienLH1
+ * FSOFT OJT
+ * 09.02.2015
+ * Basic Java Final Test
+ **/
+
 package sample.Servlet;
 
-import sample.Candidate.Intern_candidate;
-import sample.Candidate.Intern_candidateDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -39,7 +40,7 @@ public class AddExperienceCandidate extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        
+
         out.println("<h1>Add new Exprience Candidate</h1></br>");
         try {
             //  Get parameters
@@ -57,8 +58,13 @@ public class AddExperienceCandidate extends HttpServlet {
             if (button.equals("Submit")) {
                 //  Create DAO and add
                 Experience_candidateDAO dao = new Experience_candidateDAO();
-                dao.add(new Experience_candidate(firstName, lastName, birthDate, address, phone, email, candidateType, expInYear, proSkill));
-                response.sendRedirect(succeedPage);
+                Experience_candidate ec = new Experience_candidate(firstName, lastName, birthDate, address, phone, email, candidateType, expInYear, proSkill);
+                if (ec.isValid()) {
+                    dao.add(ec);
+                    response.sendRedirect(succeedPage);
+                } else {
+                    throw new NumberFormatException("Invalid info!");
+                }
             }
         } catch (IOException e) {
             System.out.println("Error while adding data to database!" + e.getMessage());

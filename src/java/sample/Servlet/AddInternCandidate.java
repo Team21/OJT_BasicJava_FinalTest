@@ -1,8 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/* 
+ * Le Hung Thien
+ * ThienLH1
+ * FSOFT OJT
+ * 09.02.2015
+ * Basic Java Final Test
+ **/
+
 package sample.Servlet;
 
 import sample.Candidate.Intern_candidate;
@@ -55,8 +58,13 @@ public class AddInternCandidate extends HttpServlet {
             if (button.equals("Submit")) {
                 //  Create DAO and add
                 Intern_candidateDAO dao = new Intern_candidateDAO();
-                dao.add(new Intern_candidate(firstName, lastName, birthDate, address, phone, email, 2, majors, semester, universityName));
-                response.sendRedirect(succeedPage);
+                Intern_candidate ic = new Intern_candidate(firstName, lastName, birthDate, address, phone, email, birthDate, majors, semester, universityName);
+                if (ic.isValid()) {
+                    dao.add(ic);
+                    response.sendRedirect(succeedPage);
+                } else {
+                    throw new NumberFormatException("Invalid info!");
+                }
             }
         } catch (IOException e) {
             System.out.println("Error while adding data to database!" + e.getMessage());
